@@ -41,10 +41,11 @@ type Config struct {
 	CloudWatchLogGroup        string
 
 	// env
-	LogLevel             string
-	LogStyle             string
-	CacheRefreshInterval time.Duration
-	EnableProfiler       bool
+	LogLevel               string
+	LogStyle               string
+	CacheRefreshInterval   time.Duration
+	EnableProfiler         bool
+	EnableGoImplementation bool
 
 	// lib
 	UnfixedEvalEnabled    bool
@@ -134,6 +135,7 @@ func initEnv() {
 	Cfg.VmaasLibMaxGoroutines = GetIntEnvOrDefault("VMAAS_LIB_MAX_GOROUTINES", 20)
 	Cfg.NewerReleaseverRepos = GetBoolEnvOrDefault("NEWER_RELEASEVER_REPOS", true)
 	Cfg.NewerReleaseverCsaf = GetBoolEnvOrDefault("NEWER_RELEASEVER_CSAF", true)
+	Cfg.EnableGoImplementation = GetBoolEnvOrDefault("ENABLE_GO_IMPLEMENTATION", false)
 }
 
 func (e *Endpoint) BuildURL(scheme string) string {

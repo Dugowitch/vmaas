@@ -51,6 +51,8 @@ objects:
           value: ${NEWER_RELEASEVER_REPOS}
         - name: NEWER_RELEASEVER_CSAF
           value: ${NEWER_RELEASEVER_CSAF}
+        - name: ENABLE_GO_IMPLEMENTATION
+          value: ${ENABLE_GO_IMPLEMENTATION}
         resources:
           limits:
             cpu: ${CPU_LIMIT_WEBAPP_GO}
@@ -494,3 +496,6 @@ parameters:
   value: "true"
 - name: DB_DUMP_BUCKET
   value: insights-vmaas-dump-storage
+- name: ENABLE_GO_IMPLEMENTATION
+  description: Enable go implementation of the rest of vmaas webapp endpoints
+  value: "false"
