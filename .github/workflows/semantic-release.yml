@@ -29,5 +29,6 @@ jobs:
         run: |
           pip install python-semantic-release
           semantic-release version
+          awk -F '"' '/VMAAS_VERSION/ {printf "%s", $2}' vmaas/common/constants.py > VERSION
         env:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
