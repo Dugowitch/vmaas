@@ -55,12 +55,14 @@ type Config struct {
 	EnableGoRPMPkgNames  bool
 	EnableGoSRPMPkgNames bool
 	EnableGoDBChange     bool
+	EnableGoVersion      bool
 
 	// lib
 	UnfixedEvalEnabled    bool
 	VmaasLibMaxGoroutines int
 	NewerReleaseverRepos  bool
 	NewerReleaseverCsaf   bool
+	VmaasVersionFilePath  string
 }
 
 type (
@@ -142,6 +144,7 @@ func initEnv() {
 	Cfg.VmaasLibMaxGoroutines = GetIntEnvOrDefault("VMAAS_LIB_MAX_GOROUTINES", 20)
 	Cfg.NewerReleaseverRepos = GetBoolEnvOrDefault("NEWER_RELEASEVER_REPOS", true)
 	Cfg.NewerReleaseverCsaf = GetBoolEnvOrDefault("NEWER_RELEASEVER_CSAF", true)
+	Cfg.VmaasVersionFilePath = Getenv("VMAAS_VERSION_FILE_PATH", "")
 	Cfg.EnableGoCves = GetBoolEnvOrDefault("ENABLE_GO_CVES", false)
 	Cfg.EnableGoErrata = GetBoolEnvOrDefault("ENABLE_GO_ERRATA", false)
 	Cfg.EnableGoRepos = GetBoolEnvOrDefault("ENABLE_GO_REPOS", false)
@@ -152,6 +155,7 @@ func initEnv() {
 	Cfg.EnableGoRPMPkgNames = GetBoolEnvOrDefault("ENABLE_GO_RPMPKGNAMES", false)
 	Cfg.EnableGoSRPMPkgNames = GetBoolEnvOrDefault("ENABLE_GO_SRPMPKGNAMES", false)
 	Cfg.EnableGoDBChange = GetBoolEnvOrDefault("ENABLE_GO_DBCHANGE", false)
+	Cfg.EnableGoVersion = GetBoolEnvOrDefault("ENABLE_GO_VERSION", false)
 }
 
 func (e *Endpoint) BuildURL(scheme string) string {
