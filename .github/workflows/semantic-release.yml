@@ -30,6 +30,6 @@ jobs:
           pip install python-semantic-release
           semantic-release version --print > VERSION
           git add VERSION
-          semantic-release version
+          semantic-release version --verbosity=DEBUG
         env:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
