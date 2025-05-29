@@ -9,6 +9,19 @@ import (
 	"github.com/redhatinsights/vmaas/base/utils"
 )
 
+// PackagesHandler godoc
+//
+//	@Summary		Get details for a package
+//	@Description	Get details about a package.
+//	@Produce		json
+//	@Param			nevra	path	string	true	"NEVRA"
+//	@Security		RhIdentity
+//	@Success		200	{object}	vmaas.Packages
+//	@Failure		400	{object}	utils.ErrorResponse
+//	@Failure		424	{object}	utils.ErrorResponse
+//	@Failure		500	{object}	utils.ErrorResponse
+//	@Failure		503	{object}	utils.ErrorResponse
+//	@Router			/packages/{nevra} [get]
 func PackagesHandler(c *gin.Context) {
 	if !isCacheLoaded(c) {
 		return
@@ -24,6 +37,20 @@ func PackagesHandler(c *gin.Context) {
 	c.JSON(http.StatusOK, res)
 }
 
+// PackagesPostHandler godoc
+//
+//	@Summary		Get details for packages
+//	@Description	Get details about packages. Use `package_list` to provide a list of package NEVRAs.
+//	@Accept			json
+//	@Produce		json
+//	@Param			package_list	body	vmaas.PackagesRequest	true	"package_list"
+//	@Security		RhIdentity
+//	@Success		200	{object}	vmaas.Packages
+//	@Failure		400	{object}	utils.ErrorResponse
+//	@Failure		424	{object}	utils.ErrorResponse
+//	@Failure		500	{object}	utils.ErrorResponse
+//	@Failure		503	{object}	utils.ErrorResponse
+//	@Router			/packages [post]
 func PackagesPostHandler(c *gin.Context) {
 	if !isCacheLoaded(c) {
 		return

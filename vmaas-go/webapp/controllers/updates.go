@@ -9,6 +9,19 @@ import (
 	"github.com/redhatinsights/vmaas/base/utils"
 )
 
+// UpdatesHandler godoc
+//
+//	@Summary		Get updates for a package
+//	@Description	List all updates for single package NEVRA.
+//	@Produce		json
+//	@Param			package	path	string	true	"NEVRA"
+//	@Security		RhIdentity
+//	@Success		200	{object}	vmaas.Updates
+//	@Failure		400	{object}	utils.ErrorResponse
+//	@Failure		424	{object}	utils.ErrorResponse
+//	@Failure		500	{object}	utils.ErrorResponse
+//	@Failure		503	{object}	utils.ErrorResponse
+//	@Router			/updates/{package} [get]
 func UpdatesHandler(c *gin.Context) {
 	if !isCacheLoaded(c) {
 		return
@@ -24,6 +37,20 @@ func UpdatesHandler(c *gin.Context) {
 	c.JSON(http.StatusOK, updates)
 }
 
+// UpdatesPostHandler godoc
+//
+//	@Summary		Get updates for packages
+//	@Description	List all updates for list of package NEVRAs.
+//	@Accept			json
+//	@Produce		json
+//	@Param			package_list	body	vmaas.Request	true	"package_list"
+//	@Security		RhIdentity
+//	@Success		200	{object}	vmaas.Updates
+//	@Failure		400	{object}	utils.ErrorResponse
+//	@Failure		424	{object}	utils.ErrorResponse
+//	@Failure		500	{object}	utils.ErrorResponse
+//	@Failure		503	{object}	utils.ErrorResponse
+//	@Router			/updates [post]
 func UpdatesPostHandler(c *gin.Context) {
 	if !isCacheLoaded(c) {
 		return
