@@ -33,3 +33,7 @@ jobs:
           semantic-release version
         env:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
+      - name: Genrate vmaas-go docs
+        run: |
+          bash scripts/generate_vmaas_go_docs.sh
+          git add vmaas-go/docs/openapi.json
